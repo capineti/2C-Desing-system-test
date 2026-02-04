@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draft de Design System - Estructura Completa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 3rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 3rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #000;
+            color: #000;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 2rem 0 0.75rem 0;
+            color: #333;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.5rem 0;
+            color: #444;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #444;
+        }
+
+        ul {
+            margin: 1rem 0 1rem 2rem;
+            font-size: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        .stat {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3B82F6;
+            margin: 0.5rem 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .box {
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .box-highlight {
+            background: #EFF6FF;
+            border-left: 4px solid #3B82F6;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 80px;
+            height: 30px;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+        }
+
+        .token-example {
+            font-family: 'Courier New', monospace;
+            background: #f8f8f8;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            color: #0066cc;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 2px solid #000;
+        }
+
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .flow-diagram {
+            background: #f8f8f8;
+            padding: 2rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li:before {
+            content: "☐ ";
+            margin-right: 0.5rem;
+            color: #3B82F6;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Draft de Design System</h1>
+    <p><em>Sistema de diseño bidireccional Figma ↔ Código</em></p>
+
+    <hr>
+
+    <h2>1. Stack Tecnológico</h2>
+
+    <table>
+        <tr>
+            <th>Capa</th>
+            <th>Herramienta</th>
+            <th>Propósito</th>
+        </tr>
+        <tr>
+            <td><strong>Design</strong></td>
+            <td>Figma + Tokens Studio</td>
+            <td>Diseño y gestión de tokens</td>
+        </tr>
+        <tr>
+            <td><strong>Generación IA (opcional)</strong></td>
+            <td>UX Pilot</td>
+            <td>Prototipado rápido con IA</td>
+        </tr>
+        <tr>
+            <td><strong>Code Repository</strong></td>
+            <td>Git + GitHub</td>
+            <td>Versionado y sincronización</td>
+        </tr>
+        <tr>
+            <td><strong>AI Agent (core)</strong></td>
+            <td>Antigravity</td>
+            <td>Gestión completa del design system</td>
+        </tr>
+        <tr>
+            <td><strong>Documentation</strong></td>
+            <td>Storybook</td>
+            <td>Preview y documentación interactiva</td>
+        </tr>
+    </table>
+
+    <p style="margin-top: 1rem;"><strong>Nota:</strong> Antigravity gestiona internamente Style Dictionary, Stitches,
+        React y TypeScript.</p>
+
+    <hr>
+
+    <h2>2. Arquitectura del Sistema</h2>
+
+    <p><strong>Objetivo:</strong> Sistema de diseño automatizado donde Antigravity gestiona todo el flujo de
+        transformación y generación.</p>
+
+    <h3>Flujo Completo</h3>
+
+    <!-- UX Pilot -->
+    <div class="box" style="background: #EFF6FF; border-left: 4px solid #3B82F6; margin: 2rem 0;">
+        <h3 style="margin-top: 0; color: #3B82F6;">🎨 UX PILOT</h3>
+        <p style="margin: 0;"><em>Generación de Diseño con IA - Opcional</em></p>
+        <ul style="margin-top: 1rem;">
+            <li>Genera pantallas desde prompts</li>
+            <li>Plugin nativo de Figma</li>
+            <li>Acelera prototipado inicial</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: #666;">↓</div>
+    <p style="text-align: center; color: #666; margin: 0.5rem 0;"><em>Opcional: Export to Figma</em></p>
+    <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: #666;">↓</div>
+
+    <!-- Figma -->
+    <div class="box" style="background: #F0FDF4; border-left: 4px solid #10B981; margin: 2rem 0;">
+        <h3 style="margin-top: 0; color: #10B981;">🎯 FIGMA</h3>
+        <p style="margin: 0;"><em>Centro de Diseño</em></p>
+        <ul style="margin-top: 1rem;">
+            <li>Diseño de componentes y pantallas</li>
+            <li>Gestión de design tokens con Tokens Studio</li>
+            <li>Variables y estilos organizados</li>
+            <li><strong>Fuente de verdad para diseño</strong></li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: #3B82F6;">⇅</div>
+    <p style="text-align: center; color: #3B82F6; margin: 0.5rem 0;"><strong>Sincronización Bidireccional
+            Segura</strong></p>
+    <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: #3B82F6;">⇅</div>
+
+    <!-- Git -->
+    <div class="box" style="background: #FEF3C7; border-left: 4px solid #F59E0B; margin: 2rem 0;">
+        <h3 style="margin-top: 0; color: #F59E0B;">📦 GIT REPOSITORY</h3>
+        <p style="margin: 0;"><em>Code Repository</em></p>
+        <ul style="margin-top: 1rem;">
+            <li><code>tokens.json</code> (Puente entre diseño y código)</li>
+            <li>Componentes React generados</li>
+            <li>Configuración del proyecto</li>
+            <li>Changelog y documentación</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: #A855F7;">⇅</div>
+    <p style="text-align: center; color: #A855F7; margin: 0.5rem 0;"><strong>Lectura, escritura y validación</strong>
+    </p>
+    <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: #A855F7;">⇅</div>
+
+    <!-- Antigravity (CORE) -->
+    <div class="box" style="background: #F3E8FF; border-left: 4px solid #A855F7; margin: 2rem 0;">
+        <h3 style="margin-top: 0; color: #A855F7;">🤖 ANTIGRAVITY (CORE)</h3>
+        <p><strong>Cerebro del Sistema:</strong> Gestiona la traducción entre diseño y código.</p>
+
+        <div style="background: white; padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 1px solid #E9D5FF;">
+            <p style="margin-top: 0;"><strong>🛡️ Protocolo de Seguridad (Anti-Sobrescritura):</strong></p>
+            <ul style="margin-bottom: 0;">
+                <li><strong>Ramas (Branches):</strong> Los cambios nunca van directos a producción (main).</li>
+                <li><strong>Pull Requests:</strong> Todo cambio requiere aprobación antes de fusionarse.</li>
+                <li><strong>Conflict Check:</strong> Antigravity avisa si el diseño y el código han divergido.</li>
+            </ul>
+        </div>
+        <p style="margin: 0;"><em>AI Agent - Gestión Completa del Design System</em></p>
+
+        <div style="margin-top: 1.5rem;">
+            <h4 style="margin: 0.5rem 0;">📥 Lee de:</h4>
+            <ul>
+                <li><strong>Figma API</strong> - Diseños y componentes</li>
+                <li><strong>Git</strong> - <code>tokens.json</code> y código existente</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+            <h4 style="margin: 0.5rem 0;">⚙️ Ejecuta internamente:</h4>
+            <div class="grid" style="margin-top: 1rem;">
+                <div>
+                    <ul>
+                        <li><strong>Style Dictionary</strong> - Transforma tokens</li>
+                        <li><strong>Stitches</strong> - Genera CSS-in-JS config</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><strong>React + TypeScript</strong> - Componentes</li>
+                        <li><strong>Accessibility Audit</strong> - Validación</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+            <h4 style="margin: 0.5rem 0;">📤 Genera:</h4>
+            <div class="grid" style="margin-top: 1rem;">
+                <div>
+                    <ul>
+                        <li>Componentes React type-safe</li>
+                        <li>Stitches config con tokens</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li>Páginas demo completas</li>
+                        <li>Reportes de accesibilidad</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: #666;">↓</div>
+    <p style="text-align: center; color: #666; margin: 0.5rem 0;"><strong>Código generado → Git</strong></p>
+    <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: #666;">↓</div>
+
+    <!-- Storybook -->
+    <div class="box" style="background: #FCE7F3; border-left: 4px solid #EC4899; margin: 2rem 0;">
+        <h3 style="margin-top: 0; color: #EC4899;">📚 STORYBOOK</h3>
+        <p style="margin: 0;"><em>Documentación Interactiva</em></p>
+        <ul style="margin-top: 1rem;">
+            <li>Lee componentes de Git</li>
+            <li>Preview interactivo en tiempo real</li>
+            <li>Documentación automática</li>
+            <li>Testing visual y de accesibilidad</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: #666;">↓</div>
+    <p style="text-align: center; color: #666; margin: 0.5rem 0;"><strong>Handoff a Developers</strong></p>
+    <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: #666;">↓</div>
+
+    <!-- Developer Handoff -->
+    <div class="box" style="background: #ECFDF5; border-left: 4px solid #10B981; margin: 2rem 0;">
+        <h3 style="margin-top: 0; color: #10B981;">👨‍💻 DEVELOPER HANDOFF</h3>
+        <p style="margin: 0;"><em>Entrega Production-Ready</em></p>
+        <div class="grid" style="margin-top: 1rem;">
+            <div>
+                <strong>Desde Git:</strong>
+                <ul>
+                    <li>Componentes React type-safe</li>
+                    <li>Stitches config con tokens</li>
+                </ul>
+            </div>
+            <div>
+                <strong>Desde Storybook:</strong>
+                <ul>
+                    <li>Documentación interactiva</li>
+                    <li>Ejemplos de uso</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h3>Flujo de Trabajo</h3>
+
+    <table>
+        <tr>
+            <th>Paso</th>
+            <th>Acción</th>
+            <th>Responsable</th>
+        </tr>
+        <tr>
+            <td><strong>1. Diseño</strong></td>
+            <td>Crear/refinar componentes y aplicar design tokens</td>
+            <td>Designer en Figma + Tokens Studio</td>
+        </tr>
+        <tr>
+            <td><strong>2. Sincronización</strong></td>
+            <td>Tokens se sincronizan automáticamente a Git</td>
+            <td>Tokens Studio (automático)</td>
+        </tr>
+        <tr>
+            <td><strong>3. Generación</strong></td>
+            <td>Antigravity lee Figma y Git, ejecuta Style Dictionary, genera componentes React con Stitches</td>
+            <td>Antigravity (IA)</td>
+        </tr>
+        <tr>
+            <td><strong>4. Demos</strong></td>
+            <td>Antigravity genera páginas demo combinando componentes</td>
+            <td>Antigravity (IA)</td>
+        </tr>
+        <tr>
+            <td><strong>5. Auditoría</strong></td>
+            <td>Antigravity valida accesibilidad y genera reportes</td>
+            <td>Antigravity (IA)</td>
+        </tr>
+        <tr>
+            <td><strong>6. Documentación</strong></td>
+            <td>Storybook muestra componentes interactivamente</td>
+            <td>Storybook (automático)</td>
+        </tr>
+        <tr>
+            <td><strong>7. Handoff</strong></td>
+            <td>Developers reciben código production-ready desde Git + documentación en Storybook</td>
+            <td>Developer Team</td>
+        </tr>
+    </table>
+
+    <h3>Distribución de Trabajo del Equipo (Propuesta)</h3>
+
+    <div class="grid">
+        <div class="box">
+            <h3>👩🏻 Karen</h3>
+            <p><strong>Rol:</strong> Requirements & UI Generation</p>
+            <ul>
+                <li>Gestión de requirements para diseño</li>
+                <li>UX Pilot - Generación de pantallas</li>
+                <li>Refinamiento en Figma de las pantallas</li>
+                <li>Prototipado rápido en Figma</li>
+                <li>Validación de flujos de usuario</li>
+                <li>Chequear diseños de Figma con pantallas reales</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>👨🏻 Sergio</h3>
+            <p><strong>Rol:</strong> Architecture & Automation</p>
+            <ul>
+                <li style="background: #E5E7EB; padding: 0.25rem 0.5rem; border-radius: 4px; margin-bottom: 0.5rem;">
+                    <em>Setup: Estructura inicial de Figma</em>
+                </li>
+                <li style="background: #E5E7EB; padding: 0.25rem 0.5rem; border-radius: 4px; margin-bottom: 0.5rem;">
+                    <em>Setup: Foundations</em>
+                </li>
+                <li style="background: #E5E7EB; padding: 0.25rem 0.5rem; border-radius: 4px; margin-bottom: 0.5rem;">
+                    <em>Setup: Secciones, namings y variables</em>
+                </li>
+                <li>Gestión de conectividad de herramientas</li>
+                <li>Chequear diseños de Figma con pantallas reales y adaptar en caso necesario</li>
+                <li>Demos con componentes y layouts mediante IA</li>
+                <li>Gestión y mejoras con Antigravity</li>
+                <li>Generación de documentación base en Storybook</li>
+                <li>Gestión de commits de código generado y versionado</li>
+                <li>Analíticas de diseño: componentes, uso, mejoras continuas</li>
+                <li>Optimización de performance de componentes generados</li>
+                <li>Documentación técnica (APIs, integraciones)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="box">
+            <h3>👩🏻 Ana</h3>
+            <p><strong>Rol:</strong> Components & Documentation</p>
+            <ul>
+                <li>Componentizado en Figma (con supervisión)</li>
+                <li>Gestión de archivos de Figma (con supervisión)</li>
+                <li>Mantenimiento del design system (con supervisión)</li>
+                <li>Refinamiento y mantenimiento de Storybook (con supervisión)</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>👥 Sesiones en Común</h3>
+            <p><strong>Rol:</strong> Colaboración del Equipo</p>
+            <ul>
+                <li>Revisión de flows de pantallas</li>
+                <li>Planificación de demos e interacciones</li>
+                <li>Evaluación del "engranaje" de diseño</li>
+                <li>Discusión de dificultades y mejoras</li>
+                <li>Presentaciones a business y cliente</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Fases de Implementación</h3>
+
+    <table>
+        <tr>
+            <th>Fase</th>
+            <th>Objetivo</th>
+            <th>Actividades</th>
+        </tr>
+        <tr>
+            <td><strong>Fase 1: Setup Inicial</strong></td>
+            <td>Establecer estructura base del sistema</td>
+            <td>
+                • Configurar archivo de Figma (estructura, namings, variables)<br>
+                • Conectar Tokens Studio con Git<br>
+                • Configurar Antigravity con Figma API<br>
+                • Setup inicial de Storybook
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Fase 2: Producción</strong></td>
+            <td>Implementar flujo completo end-to-end</td>
+            <td>
+                • Generar pantallas completas con UX Pilot<br>
+                • Crear demos interactivos con Antigravity<br>
+                • Handoff a developers<br>
+                • Iteración y mejora continua
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Fase 3: Componentización</strong></td>
+            <td>Crear biblioteca de componentes base</td>
+            <td>
+                • Diseñar componentes fundamentales en Figma<br>
+                • Generar código con Antigravity<br>
+                • Refinar y documentar en Storybook<br>
+                • Validar accesibilidad
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Fase 4: Testing IA</strong></td>
+            <td>Evaluar capacidades de generación con IA</td>
+            <td>
+                • Testear interacciones generadas con IA<br>
+                • Evaluar qué tan cerca están los componentes IA de los diseñados<br>
+                • Identificar límites y oportunidades de UX Pilot y Antigravity<br>
+                • Documentar aprendizajes y mejores prácticas
+            </td>
+        </tr>
+    </table>
+
+
+</body>
+
+</html>

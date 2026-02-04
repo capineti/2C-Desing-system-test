@@ -1,0 +1,29 @@
+{
+  "name": "design-system",
+  "version": "1.0.0",
+  "description": "> **Figma ↔ Antigravity ↔ Código**: Un sistema de diseño vivo, automatizado e inteligente",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "transform:tokens": "token-transformer tokens/tokens.json tokens/tokens_cleaned.json",
+    "build:sd": "style-dictionary build --config sd.config.mjs",
+    "build:tokens": "npm run transform:tokens && npm run build:sd"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^19.2.11",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.3",
+    "style-dictionary": "^4.4.0",
+    "token-transformer": "^0.0.33",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}

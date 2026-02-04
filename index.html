@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System Preview</title>
+
+    <!-- 1. Importamos el ADN del sistema (Variables generadas) -->
+    <link rel="stylesheet" href="./src/styles/variables.css">
+
+    <!-- 2. Importamos el componente Botón -->
+    <link rel="stylesheet" href="./src/components/PrimaryButton.css">
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 40px;
+            background-color: var(--color-bg-secondary);
+            /* Usamos token de fondo */
+            color: var(--color-text-primary);
+        }
+
+        .preview-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

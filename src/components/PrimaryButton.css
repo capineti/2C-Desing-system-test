@@ -1,0 +1,27 @@
+/* Componente: Primary Button */
+.btn-primary {
+  /* Usamos las variables generadas automáticamente */
+  background-color: var(--button-bg-primary);
+  color: var(--button-text-primary);
+  
+  /* Espaciado del sistema */
+  padding: var(--button-padding-y) var(--button-padding-x);
+  
+  /* Tipografía y bordes */
+  border-radius: var(--border-radius-full); /* Asumiendo que elegiste 'full' en el diseño */
+  font-family: var(--font-families-sans);
+  font-weight: var(--font-weights-medium);
+  font-size: 16px; /* Simplificado por ahora */
+  
+  /* Reset de estilos base */
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9; /* Efecto simple de hover */
+}

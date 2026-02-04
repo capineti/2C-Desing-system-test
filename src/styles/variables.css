@@ -1,0 +1,47 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --button-bg-primary: #3b82f6;
+  --button-text-primary: #ffffff;
+  --button-padding-x: 16px;
+  --button-padding-y: 8px;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-text-primary: #111827;
+  --color-text-secondary: #1f2937;
+  --color-brand-primary: #3b82f6;
+  --color-status-error: #ef4444;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-500: #3b82f6;
+  --blue-900: #1e3a8a;
+  --gray-50: #f9fafb;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --gray-white: #ffffff;
+  --error-500: #ef4444;
+  --font-families-sans: Inter;
+  --font-families-serif: Merriweather;
+  --font-families-mono: Fira Code;
+  --font-weights-light: 300;
+  --font-weights-regular: 400;
+  --font-weights-medium: 500;
+  --font-weights-semibold: 600;
+  --font-weights-bold: 700;
+  --border-radius-none: 0px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-full: 9999px;
+}
